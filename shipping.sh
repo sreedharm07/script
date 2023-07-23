@@ -1,4 +1,4 @@
-cp shippinf.service /etc/systemd/system/shipping.service
+cp shipping.service /etc/systemd/system/shipping.service
 
 
 yum install maven -y
