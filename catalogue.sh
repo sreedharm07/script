@@ -1,5 +1,5 @@
 cp catalogue.service /etc/systemd/system/catalogue.service
-co mongo.repo /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 useradd roboshop
@@ -9,6 +9,7 @@ cd /app
 unzip /tmp/catalogue.zip
 cd /app
 npm install
+
 yum install mongodb-org-shell -y
 mongo --host mongodb.cloudev7.online </app/schema/catalogue.js
 
