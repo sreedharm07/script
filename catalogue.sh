@@ -16,5 +16,6 @@ mongo --host mongodb.cloudev7.online </app/schema/catalogue.js
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
+systemctl restart catalogue
 
 
