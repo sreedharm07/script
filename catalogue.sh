@@ -9,7 +9,7 @@ cd /app
 unzip /tmp/catalogue.zip
 cd /app
 npm install
-
+yum install mongodb-org-shell -y
 mongo --host mongodb.cloudev7.online </app/schema/catalogue.js
 
 systemctl daemon-reload
