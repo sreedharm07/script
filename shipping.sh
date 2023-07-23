@@ -16,5 +16,6 @@ systemctl enable shipping
 systemctl start shipping
 yum install mysql -y
 mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+systemctl enable shipping
 systemctl restart shipping
 
