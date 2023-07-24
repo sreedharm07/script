@@ -12,12 +12,10 @@ cd /app
 unzip /tmp/user.zip
 cd /app
 npm install
-systemctl daemon-reload
-systemctl enable user
-systemctl start user
 
 yum install mongodb-org-shell -y
-mongo --host mongodb.cloudev7.online </app/schema/user.js
+
+mongo --host mongodb.cloudev7.online < /app/schema/user.js
 
 systemctl daemon-reload
 systemctl enable user
