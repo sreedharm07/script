@@ -12,7 +12,7 @@ unzip /tmp/user.zip
 cd /app
 npm install
 
-yum install mongodb-org-shell -y
+#yum install mongodb-org-shell -y
 mongo --host mongodb.cloudev7.online </app/schema/user.js
 
 systemctl daemon-reload
