@@ -13,7 +13,7 @@ cd /app
 npm install
 
 yum install mongodb-org-shell -y
-mongo --host 172.31.83.174 </app/schema/catalogue.js
+mongo --host mongodb.cloudev.online </app/schema/catalogue.js
 
 systemctl daemon-reload
 systemctl enable catalogue
