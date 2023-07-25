@@ -6,5 +6,7 @@ systemctl start rabbitmq-server
 
 systemctl enable rabbitmq-server
 
+userdel roboshop roboshop123
+
 rabbitmqctl add_user roboshop roboshop123
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
