@@ -1,4 +1,4 @@
-echo " >>>>>> copying the config file <<<<<<<<<<"
+echo -e "\e[31 m >>>>>> copying the config file <<<<<<<<<<\e[0m"
 cp nginx.conf /etc/nginx/default.d/roboshop.conf
 
 echo ">>>>>>installing nginx <<<<<<<<<<"
