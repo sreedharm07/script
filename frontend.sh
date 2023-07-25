@@ -1,7 +1,7 @@
 echo -e "\e[31 m >>>>>> copying the config file <<<<<<<<<<\e[0m"
 cp nginx.conf /etc/nginx/default.d/roboshop.conf
 
-echo ">>>>>>installing nginx <<<<<<<<<<"
+echo -e "\e[31 m >>>>>> installing nginx <<<<<<<<<<\e[0m"
 yum install nginx -y
 
 echo ">>>>>> installing app <<<<<<<<<<"
