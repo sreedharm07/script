@@ -3,8 +3,8 @@ Description=Shipping Service
 
 [Service]
 User=roboshop
-Environment=CART_ENDPOINT=cart.cloudev.online:8080
-Environment=DB_HOST=mysql.cloudev.online
+Environment=CART_ENDPOINT=cart.cloudev7.online:8080
+Environment=DB_HOST=mysql.cloudev7.online
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
