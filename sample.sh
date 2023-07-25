@@ -1,1 +1,1 @@
-echo <<<<<<<<<okk bro????>>>>>>>>>>>>
+echo -e "\e[36m sarsarlebroo \e[0m"
