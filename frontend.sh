@@ -6,7 +6,7 @@ yum install nginx -y  >/tmp/roboshop.log
 
 echo -e "\e[31m >>>>>> downloading <<<<<<<<<<\e[0m"
 rm -rf /usr/share/nginx/html/*
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip  >/tmp/roboshop.log
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip  >/tmp/roboshop.log   >/tmp/roboshop.log
 cd /usr/share/nginx/html  >/tmp/roboshop.log
 
 echo -e "\e[31m >>>>>> unziping <<<<<<<<<<\e[0m"
