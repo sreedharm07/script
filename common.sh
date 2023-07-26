@@ -85,7 +85,7 @@ mkdir /app  &>>$log
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>$log
 cd /app  &>>$log
 
-echo -e "\e[36m>>>>>>>>>unzipping<<<<<<<<<<[0m"
+echo -e "\e[36m>>>>>>>>>unzipping<<<<<<<<<<\e[0m"
 unzip /tmp/shipping.zip  &>>$log
 cd /app  &>>$log
 mvn clean package  &>>$log
@@ -96,6 +96,34 @@ yum install mysql -y  &>>$log
 
 echo -e "\e[36m>>>>>>>>>>loading schema<<<<<<<\e[0m"
 mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log
+
+function_systemd
+}
+#------------------------------------------------------------------------------------------
+
+function_dispatch() {
+
+echo -e "\e[35m   <<<<<<<<<<<copying service files  >>>>>>>>>>>>>\e[0m"
+cp dispatch.service /etc/systemd/system/dispatch.service  $log&>>
+
+echo -e "\e[35m <<<<<<<<installing go lang   >>>>>>>>>>>\e[0m"
+yum install golang -y   $log&>>
+useradd roboshop   $log&>>
+rm -rf /app   $log&>>
+mkdir /app   $log&>>
+
+echo -e "\e[35m <<<<<<<<<<downloading app >>>>>>>>>\e[0m"
+curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip   $log&>>
+cd /app   $log&>>
+
+echo -e "\e[35m <<<<<<<<<<unzipping >>>>>>>>\e[0m"
+unzip /tmp/dispatch.zip   $log&>>
+cd /app   $log&>>
+
+echo -e "\e[35m <<<<<<<<<dependencied >>>>>>\e[0m"
+go mod init dispatch   $log&>>
+go get   $log&>>
+go build   $log&>>
 
 function_systemd
 }
