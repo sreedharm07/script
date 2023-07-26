@@ -37,7 +37,7 @@ function_schema() {
   yum install mongodb-org-shell -y  &>>$log echo $?
 
   echo -e "\e[32m>>>>>>setting schema<<<<<<<<\e[0m"
-  mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log echo $?
+  mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log
   fi
 
   if [ "${schema_type}" == "mysql" ]; then
@@ -46,7 +46,7 @@ function_schema() {
   yum install mysql -y  &>>$log echo $?
 
   echo -e "\e[36m>>>>>>>>>>loading schema<<<<<<<\e[0m"
-  mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log echo $?
+  mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log
   fi
 }
 #-------------------------------------------------------------------------------------------------
@@ -77,9 +77,9 @@ function_payment() {
 #--------------------------------------------------------------------------------------------------
 function_systemd () {
    echo -e "\e[35m >>>>> systemctl restarting>>>>>>\e[0m"
-    systemctl daemon-reload  &>>$log echo $?
-    systemctl enable payment  &>>$log echo $?
-    systemctl start payment  &>>$log echo $?
+    systemctl daemon-reload  &>>$log
+    systemctl enable payment  &>>$log
+    systemctl start payment  &>>$log
 }
 #----------------------------------------------------------------------------------------------------
 function_shipping(){
