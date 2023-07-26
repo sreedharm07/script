@@ -102,28 +102,28 @@ function_systemd
 #------------------------------------------------------------------------------------------
 
 function_dispatch() {
-
+  
 echo -e "\e[35m   <<<<<<<<<<<copying service files  >>>>>>>>>>>>>\e[0m"
-cp dispatch.service /etc/systemd/system/dispatch.service  $log&>>
+cp dispatch.service /etc/systemd/system/dispatch.service  &>>$log
 
 echo -e "\e[35m <<<<<<<<installing go lang   >>>>>>>>>>>\e[0m"
-yum install golang -y   $log&>>
-useradd roboshop   $log&>>
-rm -rf /app   $log&>>
-mkdir /app   $log&>>
+yum install golang -y   &>>$log
+useradd roboshop   &>>$log
+rm -rf /app   &>>$log
+mkdir /app   &>>$log
 
 echo -e "\e[35m <<<<<<<<<<downloading app >>>>>>>>>\e[0m"
-curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip   $log&>>
-cd /app   $log&>>
+curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip   &>>$log
+cd /app   &>>$log
 
 echo -e "\e[35m <<<<<<<<<<unzipping >>>>>>>>\e[0m"
-unzip /tmp/dispatch.zip   $log&>>
-cd /app   $log&>>
+unzip /tmp/dispatch.zip   &>>$log
+cd /app   &>>$log
 
 echo -e "\e[35m <<<<<<<<<dependencied >>>>>>\e[0m"
-go mod init dispatch   $log&>>
-go get   $log&>>
-go build   $log&>>
+go mod init dispatch   &>>$log
+go get   &>>$log
+go build   &>>$log
 
 function_systemd
 }
