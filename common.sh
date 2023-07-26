@@ -32,7 +32,7 @@ function_systemd
 }
 #----------------------------------------------------------------------------------------------
 function_schema() {
-  if  [${"schema_type"} == "mongodb" ]; then
+  if  [ "${schema_type}" == "mongodb" ]; then
   echo -e "\e[32m>>>>>>installing mongo<<<<<<<<\e[0m"
   yum install mongodb-org-shell -y  &>>$log
 
@@ -40,7 +40,7 @@ function_schema() {
   mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log
   fi
 
-  if [${"schema_type"} == "mysql"] ; then
+  if [ "${schema_type}" == "mysql"] ; then
 
   echo -e "\e[36m <<<<<<<<installing mysql<<<<<<<<<<\e[0m"
   yum install mysql -y  &>>$log
