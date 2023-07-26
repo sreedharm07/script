@@ -1,39 +1,39 @@
-log=/tmp/roboshop.log
+#log=/tmp/roboshop.log
 
 function_nodejs() {
 
 echo -e "\e[32m>>>>>>copying the service an repos <<<<<<<<\e[0m"
 
-cp ${component}.service /etc/systemd/system/${component}.service   &>>$log
+cp ${component}.service /etc/systemd/system/${component}.service   #&>>$log
 echo $?
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[32m>>>>>>>>>nodejs settingup <<<<<<<<\e[0m"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$log
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash  #&>>$log
  echo $?
 
 echo -e "\e[32m>>>>>>installing nodejs <<<<<<<<\e[0m"
-yum install nodejs -y  &>>$log
+yum install nodejs -y  #&>>$log
 echo $?
 
 echo -e "\e[32m>>>>>>creating user and directory<<<<<<<<\e[0m"
-useradd roboshop  &>>$log
+useradd roboshop  #&>>$log
 echo $?
-rm -rf /app  &>>$log
+rm -rf /app  #&>>$log
 echo $?
-mkdir /app  &>>$log
+mkdir /app  #&>>$log
 echo $?
 
 echo -e "\e[32m>>>>>>downloading the app<<<<<<<<\e[0m"
-curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip  &>>$log
+curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip  #&>>$log
 echo $?
 cd /app
 
 echo -e "\e[32m>>>>>>unzipping<<<<<<<<\e[0m"
-unzip /tmp/${component}.zip  &>>$log
+unzip /tmp/${component}.zip  #&>>$log
 echo $?
 cd /app
-npm install  &>>$log
+npm install  #&>>$log
 echo $?
 
 function_schema
@@ -43,22 +43,22 @@ function_systemd
 function_schema() {
   if  [ "${schema_type}" == "mongodb" ]; then
   echo -e "\e[32m>>>>>>installing mongo<<<<<<<<\e[0m"
-  yum install mongodb-org-shell -y  &>>$log
+  yum install mongodb-org-shell -y  #&>>$log
   echo $?
 
   echo -e "\e[32m>>>>>>setting schema<<<<<<<<\e[0m"
-  mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log
+  mongo --host mongodb.cloudev7.online </app/schema/${component}.js  #&>>$log
   echo $?
   fi
 
   if [ "${schema_type}" == "mysql" ]; then
 
   echo -e "\e[36m <<<<<<<<installing mysql<<<<<<<<<<\e[0m"
-  yum install mysql -y  &>>$log
+  yum install mysql -y  #&>>$log
   echo $?
 
   echo -e "\e[36m>>>>>>>>>>loading schema<<<<<<<\e[0m"
-  mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log
+  mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  #&>>$log
   echo $?
   fi
 }
@@ -67,73 +67,73 @@ function_payment() {
 
 
   echo -e "\e[35m >>>>>copying>>>>>>\e[0m"
-  cp payment.service /etc/systemd/system/payment.service   &>>$log
+  cp payment.service /etc/systemd/system/payment.service   #&>>$log
   echo $?
 
   echo -e "\e[35m >>>>>installing python>>>>>>\e[0m"
-  yum install python36 gcc python3-devel -y  &>>$log
+  yum install python36 gcc python3-devel -y  #&>>$log
   echo $?
-  useradd roboshop  &>>$log
+  useradd roboshop  #&>>$log
   echo $?
-  rm -rf /app  &>>$log
+  rm -rf /app  #&>>$log
 echo $?
-  mkdir /app  &>>$log
+  mkdir /app  #&>>$log
   echo $?
 
   echo -e "\e[35m >>>>>downloading app>>>>>>\e[0m"
-  curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip  &>>$log
+  curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip  #&>>$log
   echo $?
-  cd /app  &>>$log
+  cd /app  #&>>$log
   echo $?
 
   echo -e "\e[35m >>>>>unzip app>>>>>>\e[0m"
-  unzip /tmp/payment.zip  &>>$log
+  unzip /tmp/payment.zip  #&>>$log
   echo $?
-  cd /app  &>>$log
+  cd /app  #&>>$log
   echo $?
 
   echo -e "\e[35m >>>>>dependencies>>>>>>\e[0m"
-  pip3.6 install -r requirements.txt  &>>$log
+  pip3.6 install -r requirements.txt  #&>>$log
   echo $?
   function_systemd
 }
 #--------------------------------------------------------------------------------------------------
 function_systemd () {
    echo -e "\e[35m >>>>> systemctl restarting>>>>>>\e[0m"
-    systemctl daemon-reload  &>>$log
-    systemctl enable payment  &>>$log
-    systemctl start payment  &>>$log
+    systemctl daemon-reload  #&>>$log
+    systemctl enable payment  #&>>$log
+    systemctl start payment  #&>>$log
 }
 #----------------------------------------------------------------------------------------------------
 function_shipping(){
   echo  -e "\e[36m >>>>>>>>>>copying service file <<<<<<<<<<<\e[0m"
-cp shipping.service /etc/systemd/system/shipping.service   &>>$log
+cp shipping.service /etc/systemd/system/shipping.service   #&>>$log
 echo $?
 
 echo -e "\e[36m <<<<<<<<<<<installing maven <<<<<<<<<<<\e[0m"
-yum install maven -y  &>>$log
+yum install maven -y  #&>>$log
 echo $?
-useradd roboshop  &>>$log
+useradd roboshop  #&>>$log
 echo $?
-rm -rf /app  &>>$log
+rm -rf /app  #&>>$log
 echo $?
 
 echo -e "\e[36m>>>>>>>>>>>downloading app <<<<<<<<<<<\e[0m"
-mkdir /app  &>>$log
+mkdir /app  #&>>$log
 echo $?
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>$log
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  #&>>$log
 echo $?
-cd /app  &>>$log
+cd /app  #&>>$log
 echo $?
 
 echo -e "\e[36m>>>>>>>>>unzipping<<<<<<<<<<\e[0m"
-unzip /tmp/shipping.zip  &>>$log
+unzip /tmp/shipping.zip  #&>>$log
 echo $?
-cd /app  &>>$log
+cd /app  #&>>$log
 echo $?
-mvn clean package  &>>$log
+mvn clean package  #&>>$log
 echo $?
-mv target/shipping-1.0.jar shipping.jar  &>>$log
+mv target/shipping-1.0.jar shipping.jar  #&>>$log
 echo $?
 
 function_schema
@@ -145,37 +145,37 @@ function_systemd
 function_dispatch() {
 
 echo -e "\e[35m   <<<<<<<<<<<copying service files  >>>>>>>>>>>>>\e[0m"
-cp dispatch.service /etc/systemd/system/dispatch.service  &>>$log
+cp dispatch.service /etc/systemd/system/dispatch.service  #&>>$log
 echo $?
 
 echo -e "\e[35m <<<<<<<<installing go lang   >>>>>>>>>>>\e[0m"
-yum install golang -y   &>>$log
+yum install golang -y   #&>>$log
 echo $?
-useradd roboshop   &>>$log
+useradd roboshop   #&>>$log
 echo $?
-rm -rf /app   &>>$log
+rm -rf /app   #&>>$log
 echo $?
-mkdir /app   &>>$log
+mkdir /app   #&>>$log
 echo $?
 
 echo -e "\e[35m <<<<<<<<<<downloading app >>>>>>>>>\e[0m"
-curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip   &>>$log
+curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip   #&>>$log
 echo $?
-cd /app   &>>$log
+cd /app   #&>>$log
 echo $?
 
 echo -e "\e[35m <<<<<<<<<<unzipping >>>>>>>>\e[0m"
-unzip /tmp/dispatch.zip   &>>$log
+unzip /tmp/dispatch.zip   #&>>$log
 echo $?
-cd /app   &>>$log
+cd /app   #&>>$log
 echo $?
 
 echo -e "\e[35m <<<<<<<<<dependencied >>>>>>\e[0m"
-go mod init dispatch   &>>$log
+go mod init dispatch   #&>>$log
 echo $?
-go get   &>>$log
+go get   #&>>$log
 echo $?
-go build   &>>$log
+go build   #&>>$log
 echo $?
 
 function_systemd
