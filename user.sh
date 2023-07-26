@@ -1,4 +1,4 @@
-echo -e "\e[33m>>>>>>> copying repos<<<<<<\e [0m"
+echo -e "\e[33m>>>>>>> copying repos<<<<<<\e[0m"
 cp user.service /etc/systemd/system/user.service  &>> /tmp/roboshop.log
 cp mongo.repo /etc/yum.repos.d/mongo.repo  &>> /tmp/roboshop.log
 
