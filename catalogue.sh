@@ -23,6 +23,8 @@ unzip /tmp/catalogue.zip  &>>/tmp/roboshop.log
 cd /app
 npm install  &>>/tmp/roboshop.log
 
+systemctl enable catalogue
+
 echo -e "\e[32m>>>>>>installing mongo<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y  &>>/tmp/roboshop.log
 
