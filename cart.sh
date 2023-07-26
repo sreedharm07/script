@@ -1,4 +1,4 @@
-log = /tmp/roboshop.log
+log=/tmp/roboshop.log
 
 echo -e "\e[34m >>>>>>coping service file <<<<<<<\e[0m"
 cp cart.service /etc/systemd/system/cart.service  &>> $ log
