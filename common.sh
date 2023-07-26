@@ -101,8 +101,8 @@ function_payment() {
 function_systemd () {
    echo -e "\e[35m >>>>> systemctl restarting>>>>>>\e[0m"
     systemctl daemon-reload  #&>>$log
-    systemctl enable {component} #&>>$log
-    systemctl start {component} #&>>$log
+    systemctl enable ${component} #&>>$log
+    systemctl start ${component} #&>>$log
 }
 #----------------------------------------------------------------------------------------------------
 function_shipping(){
