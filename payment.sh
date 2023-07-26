@@ -1,4 +1,4 @@
-log=/log/roboshop.log
+log=/tmp/roboshop.log
 
 echo -e "\e[35m >>>>>copying>>>>>>\e[0m"
 cp payment.service /etc/systemd/system/payment.service   &>>$log
