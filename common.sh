@@ -40,7 +40,7 @@ function_schema() {
   mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log
   fi
 
-  if [ "${schema_type}" == "mysql"] ; then
+  if [ "${schema_type}" == "mysql" ]; then
 
   echo -e "\e[36m <<<<<<<<installing mysql<<<<<<<<<<\e[0m"
   yum install mysql -y  &>>$log
