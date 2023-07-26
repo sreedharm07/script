@@ -34,19 +34,19 @@ function_systemd
 function_schema() {
   if  [ "${schema_type}" == "mongodb" ]; then
   echo -e "\e[32m>>>>>>installing mongo<<<<<<<<\e[0m"
-  yum install mongodb-org-shell -y  &>>$log
+  yum install mongodb-org-shell -y  &>>$log | echo $?
 
   echo -e "\e[32m>>>>>>setting schema<<<<<<<<\e[0m"
-  mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log 
+  mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log  | echo $?
   fi
 
   if [ "${schema_type}" == "mysql" ]; then
 
   echo -e "\e[36m <<<<<<<<installing mysql<<<<<<<<<<\e[0m"
-  yum install mysql -y  &>>$log   | echo $?
+  yum install mysql -y  &>>$log   | echo $?  | echo $?
 
   echo -e "\e[36m>>>>>>>>>>loading schema<<<<<<<\e[0m"
-  mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log
+  mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log |echo $?
   fi
 }
 #-------------------------------------------------------------------------------------------------
