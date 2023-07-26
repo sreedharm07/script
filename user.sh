@@ -3,11 +3,10 @@ cp user.service /etc/systemd/system/user.service  &>> /tmp/roboshop.log
 cp mongo.repo /etc/yum.repos.d/mongo.repo  &>> /tmp/roboshop.log
 
 echo -e "\e[33m >>>>>>> setting up repos <<<<<<\e[0m"
-echo -e "\e[32m >>>>>> installing nginx <<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash   &>> /tmp/roboshop.log
 yum install nodejs -y  &>> /tmp/roboshop.log
 
-echo -e "\e [32m>>>>>>>nodejs<<<<<< \e[0m"
+echo -e"\e[32m>>>>>>>nodejs<<<<<<\e[0m"
 useradd roboshop  &>> /tmp/roboshop.log
 
 rm -rf /app &>> /tmp/roboshop.log
