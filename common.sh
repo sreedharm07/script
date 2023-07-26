@@ -165,8 +165,8 @@ cd /app   #&>>$log
 #echo $?
 
 echo -e "\e[35m <<<<<<<<<<unzipping >>>>>>>>\e[0m"
-unzip /tmp/dispatc  &>>$log
-echo $?
+unzip /tmp/dispatch.zip   #&>>$log
+#echo $?
 cd /app   #&>>$log
 #echo $?
 
