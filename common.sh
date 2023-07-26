@@ -35,10 +35,7 @@ yum install mongodb-org-shell -y  &>>$log
 echo -e "\e[32m>>>>>>setting schema<<<<<<<<\e[0m"
 mongo --host mongodb.cloudev7.online </app/schema/${component}.js  &>>$log
 
-echo -e "\e[32m>>>>>>crestarting<<<<<<<<\e[0m"
-systemctl daemon-reload  &>>$log
-systemctl enable ${component}  &>>$log
-systemctl start ${component}  &>>$log
+function_systemd
 }
 #-------------------------------------------------------------------------------------------------
 function_payment() {
@@ -64,9 +61,41 @@ function_payment() {
   echo -e "\e[35m >>>>>dependencies>>>>>>\e[0m"
   pip3.6 install -r requirements.txt  &>>$log
 
-  echo -e "\e[35m >>>>> systemctl restarting>>>>>>\e[0m"
-  systemctl daemon-reload  &>>$log
-  systemctl enable payment  &>>$log
-  systemctl start payment  &>>$log
+
 }
 #--------------------------------------------------------------------------------------------------
+function_systemd () {
+   echo -e "\e[35m >>>>> systemctl restarting>>>>>>\e[0m"
+    systemctl daemon-reload  &>>$log
+    systemctl enable payment  &>>$log
+    systemctl start payment  &>>$log
+}
+#----------------------------------------------------------------------------------------------------
+function_shipping(){
+  echo  -e "\e[36m >>>>>>>>>>copying service file <<<<<<<<<<<\e[0m"
+cp shipping.service /etc/systemd/system/shipping.service   &>>$log
+
+echo -e "\e[36m <<<<<<<<<<<installing maven <<<<<<<<<<<\e[0m"
+yum install maven -y  &>>$log
+useradd roboshop  &>>$log
+rm -rf /app  &>>$log
+
+echo -e "\e[36m>>>>>>>>>>>downloading app <<<<<<<<<<<\e[0m"
+mkdir /app  &>>$log
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>$log
+cd /app  &>>$log
+
+echo -e "\e[36m>>>>>>>>>unzipping<<<<<<<<<<[0m"
+unzip /tmp/shipping.zip  &>>$log
+cd /app  &>>$log
+mvn clean package  &>>$log
+mv target/shipping-1.0.jar shipping.jar  &>>$log
+
+echo -e "\e[36m <<<<<<<<installing mysql<<<<<<<<<<\e[0m"
+yum install mysql -y  &>>$log
+
+echo -e "\e[36m>>>>>>>>>>loading schema<<<<<<<\e[0m"
+mysql -h mysql.cloudev7.online -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>>$log
+
+function_systemd
+}
