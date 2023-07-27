@@ -83,7 +83,10 @@ function_payment() {
   echo -e "\e[35m >>>>>installing python>>>>>>\e[0m"
   yum install python36 gcc python3-devel -y  &>>$log
   function_status
+  id roboshop
+  if [$? -ne 0]; then
   useradd roboshop  &>>$log
+  fi
   function_status
   rm -rf /app  &>>$log
 function_status
