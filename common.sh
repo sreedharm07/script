@@ -24,7 +24,7 @@ yum install nodejs -y  &>>$log
 function_status
 
 echo -e "\e[32m>>>>>>creating user and directory<<<<<<<<\e[0m"
-id roboshop
+id roboshop &>>$log
 if [$? -ne 0] ; then
 useradd roboshop  &>>$log
 fi
