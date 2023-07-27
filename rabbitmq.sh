@@ -15,7 +15,7 @@ systemctl start rabbitmq-server  &>>log
 function_status
 
  id roboshop  &>>log
-if [$? -ne 0 ]; then
+if [$? -ne 0]; then
 rabbitmqctl add_user roboshop roboshop123  &>>log
 fi
 function_status
