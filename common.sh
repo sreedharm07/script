@@ -25,7 +25,7 @@ function_status
 
 echo -e "\e[32m>>>>>>creating user and directory<<<<<<<<\e[0m"
 id roboshop &>>$log
-if [$? -ne 0]; then
+if [ $? -ne 0 ]; then
  useradd roboshop  &>>$log
 fi
 function_status
@@ -87,7 +87,7 @@ function_payment() {
   id roboshop  &>>$log
   function_status
     echo -e "\e[35m >>>>>condition applying >>>>>>\e[0m"
-  if [$? -ne 0]; then
+  if [ $? -ne 0 ]; then
   useradd roboshop  &>>$log
   fi
   function_status
