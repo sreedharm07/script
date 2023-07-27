@@ -6,5 +6,8 @@ yum install rabbitmq-server -y
 systemctl enable rabbitmq-server
 systemctl start rabbitmq-server
 
+ id roboshop
+if [$? -ne 0 ] ; then
 rabbitmqctl add_user roboshop roboshop123
+fi
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
