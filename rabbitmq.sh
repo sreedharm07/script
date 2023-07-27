@@ -1,5 +1,5 @@
+log=/tmp/roboshop.log
 source common.sh
-log = /tmp/roboshop.log
 
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash  &>>log
 function_status
