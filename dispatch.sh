@@ -1,3 +1,3 @@
 source common.sh
-component=dispatch
+component=dispatch #io
 function_golang
