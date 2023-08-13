@@ -11,8 +11,7 @@ function_nodejs() {
 
 echo -e "\e[32m>>>>>>copying the service an repos <<<<<<<<\e[0m"
 
-cp ${component}.service /etc/systemd/system/${component}.service   &>>$log
-function_status
+cp ${component}.service /etc/systemd/system/${component}.service   &>>$log | function_status
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[32m>>>>>>>>>nodejs settingup <<<<<<<<\e[0m"
