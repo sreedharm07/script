@@ -1,2 +1,2 @@
 source common.sh
-function_golang
+function_dispatch
